@@ -53,6 +53,9 @@ export default class RNPickerSelect extends PureComponent {
 
         // Touchable wrapper props
         touchableWrapperProps: PropTypes.shape({}),
+        
+        // Wrapper View of Picker props (iOS only)
+        wrapperViewProps: PropTypes.shape({}),
 
         // Custom Icon
         Icon: PropTypes.func,
@@ -83,6 +86,7 @@ export default class RNPickerSelect extends PureComponent {
         pickerProps: {},
         touchableDoneProps: {},
         touchableWrapperProps: {},
+        wrapperViewProps: {},
         Icon: null,
         InputAccessoryView: null,
     };
@@ -413,7 +417,7 @@ export default class RNPickerSelect extends PureComponent {
     }
 
     renderIOS() {
-        const { style, modalProps, pickerProps, touchableWrapperProps } = this.props;
+        const { style, modalProps, pickerProps, touchableWrapperProps, wrapperViewProps } = this.props;
         const { animationType, orientation, selectedItem, showPicker } = this.state;
 
         return (
@@ -451,6 +455,7 @@ export default class RNPickerSelect extends PureComponent {
                             { height: orientation === 'portrait' ? 215 : 162 },
                             style.modalViewBottom,
                         ]}
+                        {...wrapperViewProps}
                     >
                         <Picker
                             testID="ios_picker"
